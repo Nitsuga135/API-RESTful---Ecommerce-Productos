@@ -90,7 +90,7 @@ project-root
 Clonar el repositorio
 
 ```bash
-git clone https://github.com/tuusuario/apirestfull.git
+git clone https://github.com/Nitsuga135/API-RESTful---Ecommerce-Productos.git
 ```
 
 Entrar en la carpeta del proyecto
@@ -253,14 +253,3 @@ nodemon
 Agustin Giraldez
 
 ---
-
-# Notas
-
-Algunos valores del README fueron dejados como ejemplos para permitir la adaptación del proyecto según el entorno donde se despliegue.
-
-Los siguientes datos deben ser completados según el entorno del usuario:
-
-* URL real del repositorio
-* cadena de conexión a MongoDB
-* posible URL de deploy de la API
-* endpoints adicionales en caso de ampliar el proyecto
