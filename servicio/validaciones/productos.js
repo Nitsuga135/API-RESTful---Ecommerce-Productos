@@ -12,7 +12,23 @@ const validar = producto => {
                    .required(),
 
         stock: Joi.number()
-                  .required()
+                  .required(),
+                  
+        marca: Joi.string()
+                  .required(),
+                
+        categoria: Joi.string()
+                      .required(),
+        
+        
+        detalles: Joi.string()
+                     .required(),
+
+        
+        foto: Joi.string()
+                 .required(),
+
+        envio: Joi.required(),
     })
 
     const {error} = productoSchema.validate(producto)
