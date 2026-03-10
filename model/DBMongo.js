@@ -7,7 +7,7 @@ class CnxMongoDB {
     static db = null;
     static connection = false;
 
-    static conectar = async () => {
+    static conectar = async _ => {
         try {
 
             if (CnxMongoDB.client) return CnxMongoDB.client;

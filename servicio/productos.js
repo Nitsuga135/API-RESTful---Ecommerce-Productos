@@ -1,4 +1,4 @@
-import ModelFactory from '../model/DAO/productosFactory.js';
+import ModelFactory from '../model/DAO/productos/productosFactory.js';
 import config from '../config.js';
 import validar from './validaciones/productos.js';
 

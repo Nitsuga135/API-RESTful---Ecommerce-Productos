@@ -5,7 +5,7 @@ const validar = producto => {
     const productoSchema = Joi.object({
         nombre: Joi.string()
                     .min(3)
-                    .max(20)
+                    .max(30)
                     .required(),
                     
         precio: Joi.number()

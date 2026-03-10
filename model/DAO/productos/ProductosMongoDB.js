@@ -1,5 +1,4 @@
-import { json } from "express";
-import CnxMongoDB from "../DBMongo.js";
+import CnxMongoDB from "../../DBMongo.js";
 import { ObjectId } from "mongodb";
 
 class ModelMongoDB {

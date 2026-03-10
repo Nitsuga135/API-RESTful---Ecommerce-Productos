@@ -8,19 +8,19 @@ class ModelFactory {
 
         switch (tipo){
             case 'MEM':
-                console.log('****** Persistiendo en Memoria ******');
+                console.log('****** Producto Persistiendo en Memoria ******');
                 return new ModelMem();
             
             case 'FILE':
-                console.log('****** Persistiendo en File System ******');
+                console.log('****** Producto Persistiendo en File System ******');
                 return new ModelFile();
             
             case 'MONGODB':
-                console.log('****** Persistiendo en MongoDB ******');
+                console.log('****** Producto Persistiendo en MongoDB ******');
                 return new ModelMongoDB();
 
             default: 
-                console.log('****** Persistiendo en Memoria (DEFAULT)******');
+                console.log('****** Producto Persistiendo en Memoria (DEFAULT)******');
                 return new ModelMem();
         }
     }

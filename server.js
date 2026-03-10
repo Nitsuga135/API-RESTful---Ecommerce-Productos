@@ -1,8 +1,11 @@
 import 'dotenv/config';
 import express from 'express';
-import RouterProductos from './router/productos.js'
 import config from './config.js';
+
 import CnxMongoDB from './model/DBMongo.js';
+
+import RouterProductos from './router/productos.js'
+import RouterCarrito from './router/carrito.js'
 
 // -- Rutas / endpoints API RESTfull -- 
 
@@ -12,7 +15,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.use('/api/productos', new RouterProductos().start() );
-
+app.use('/api/carrito', new RouterCarrito().start() );
 
 
 // -- LISTEN DEL SERVER --
