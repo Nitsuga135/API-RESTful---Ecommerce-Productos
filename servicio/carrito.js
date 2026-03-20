@@ -22,4 +22,4 @@ class Servicio {
     }
 
 }
-export default Servicio;
+export default Servicio; 
