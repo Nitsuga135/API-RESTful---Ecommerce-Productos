@@ -1,6 +1,6 @@
 import express from 'express';
 import Controller from '../controller/upload.js';
-import uploadImagen from '../middleware/uploadImagen.js';
+import uploadImagen from '../middleware/middelwareUpload/uploadImagen.js';
 
 class Router {
 
