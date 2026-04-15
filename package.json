@@ -1,0 +1,39 @@
+{
+  "type": "module",
+  "name": "apirestfull",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "rest-api",
+    "mongodb",
+    "mvc",
+    "dao",
+    "backend"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "author": "Agustin Giraldez",
+  "license": "MIT",
+  "description": "REST API desarrollada con Node.js, Express y MongoDB usando arquitectura MVC y patrón DAO.",
+  "dependencies": {
+    "cloudinary": "^1.41.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "joi": "^18.0.2",
+    "mongodb": "^7.1.0",
+    "multer": "^2.1.1",
+    "multer-storage-cloudinary": "^4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
