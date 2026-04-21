@@ -22,6 +22,8 @@ class ModelMem {
 
     actualizarProducto = async (id, producto) => {
         producto.id = id
+        if(producto.precio) producto.precio = Number(producto.precio)
+        if(producto.stock !== undefined) producto.stock = producto.stock ? parseInt(producto.stock) : 0
 
         const index = this.productos.findIndex(p => p.id == id)
 

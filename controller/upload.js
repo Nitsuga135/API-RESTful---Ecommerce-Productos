@@ -17,7 +17,7 @@ class Controller{
 
             const urlFoto = await this.servicio.guardarArchivoCloudinary(file);
 
-            res.json({ urlFoto, urlFotoCloudinary: urlFoto });
+            res.json({ urlFoto });
         } catch (error) {
             console.error('Error al subir imagen:', error);
             res.status(500).json({ error: 'No se pudo subir la imagen en este momento' });
