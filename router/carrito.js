@@ -13,6 +13,7 @@ class Router {
         
         this.router.get('/', this.controller.obtenerCarrito);
         this.router.post('/', this.controller.guardarCarrito);
+        this.router.get('/mp/feedback', this.controller.feedback);
         return this.router;
     }
 }

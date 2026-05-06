@@ -25,5 +25,11 @@ class Controller{
             res.json({errMsg: error.message})
         }
     }
+
+    feedback = async (req, res) => {
+        const info = req.query;
+        console.log(info);
+        res.redirect(`http://localhost:3000/carrito`);
+    }
 }
 export default Controller;
