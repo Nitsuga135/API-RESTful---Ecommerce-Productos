@@ -14,6 +14,7 @@ class Router {
         this.router.get('/', this.controller.obtenerCarrito);
         this.router.post('/', this.controller.guardarCarrito);
         this.router.get('/mp/feedback', this.controller.feedback);
+        this.router.post('/mp/create_preference', this.controller.create_preference);
         return this.router;
     }
 }

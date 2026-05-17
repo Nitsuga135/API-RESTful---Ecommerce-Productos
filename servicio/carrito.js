@@ -2,27 +2,6 @@ import ModelFactory from '../model/DAO/carrito/carritoFactory.js';
 import config from '../config/config.js';
 import { preference } from './pago.js';
 
-preference.create({
-  body: {
-    items: [
-      {
-        title: 'Mi producto',
-        quantity: 1,
-        unit_price: 2001
-      }
-    ],
-      back_urls: {
-        success: `http://localhost:${config.PORT}/api/carrito/mp/feedback`,
-        failure: `http://localhost:${config.PORT}/api/carrito/mp/feedback`,
-        pending: `http://localhost:${config.PORT}/api/carrito/mp/feedback`
-      },
-
-      auto_return: "approved",
-  }
-})
-.then(console.log)
-.catch(console.log)
-
 class Servicio { 
 
     constructor(){
@@ -41,6 +20,39 @@ class Servicio {
       guardarCarrito = async carrito => {
         const carritoGuardado = await this.model.guardarCarrito(carrito)
         return carritoGuardado
+    }
+
+
+    // -- MP Preference --
+    create_preference = async data => {
+        const items = (data?.items || []).map(item => ({
+            id: String(item.id),
+            title: item.title,
+            quantity: Number(item.quantity),
+            unit_price: Number(item.unit_price),
+            currency_id: item.currency_id || 'ARS',
+            picture_url: item.picture_url || undefined
+        }));
+
+        if (items.length === 0) {
+            throw new Error('No se recibieron productos para crear la preferencia');
+        }
+
+        const baseUrl = config.MP_BACK_URL_BASE;
+
+        const response = await preference.create({
+            body: {
+                items,
+                back_urls: {
+                    success: `${baseUrl}/api/carrito/mp/feedback`,
+                    failure: `${baseUrl}/api/carrito/mp/feedback`,
+                    pending: `${baseUrl}/api/carrito/mp/feedback`
+                },
+                auto_return: "approved"
+            }
+        });
+
+        return response;
     }
 
 }
