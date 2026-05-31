@@ -1,4 +1,5 @@
 import CnxMongoDB from "../../DBMongo.js";
+import { CarritoModel } from '../models/carrito.js';
 
 class ModelMongoDB {
 
@@ -9,7 +10,7 @@ class ModelMongoDB {
     obtenerCarrito = async () => {
         if( !CnxMongoDB.connection ) return [];
 
-        const carrito = await CnxMongoDB.db.collection('carritos').find({}).toArray()
+        const carrito = await CarritoModel.find({});
         return carrito;
     };
 
@@ -17,8 +18,9 @@ class ModelMongoDB {
         if(!CnxMongoDB.connection){
             throw new Error("No hay conexión a la base de datos");
         }
-        await CnxMongoDB.db.collection('carritos').insertOne(carrito);
-        return carrito;
+        carritoModel = new CarritoModel(carrito);
+        const savedCarrito = await carritoModel.save();
+        return savedCarrito;
     };
 }
 

@@ -1,5 +1,5 @@
 import CnxMongoDB from "../../DBMongo.js";
-import { ObjectId } from "mongodb";
+import { ProductoModel } from '../models/productos.js';
 
 class ModelMongoDB {
 
@@ -10,14 +10,14 @@ class ModelMongoDB {
     obtenerProductos = async () => {
         if( !CnxMongoDB.connection ) return [];
 
-        const productos = await CnxMongoDB.db.collection('productos').find({}).toArray()
+        const productos = await ProductoModel.find({})
         return productos;
     };
 
     obtenerProducto = async id => {
         if( !CnxMongoDB.connection ) return [];
 
-        const productos = await CnxMongoDB.db.collection('productos').findOne({ _id: new ObjectId(id) })
+        const productos = await ProductoModel.findOne({ _id: id })
         return productos;
     };
 
@@ -27,8 +27,9 @@ class ModelMongoDB {
         if(producto.precio) producto.precio = Number(producto.precio);
         if(producto.stock !== undefined) producto.stock = producto.stock ? parseInt(producto.stock) : 0;
 
-        const resultado = await CnxMongoDB.db.collection('productos').insertOne(producto);
-        return await this.obtenerProducto(resultado.insertedId);
+        const productoModel = new ProductoModel(producto);
+        const resultado = await productoModel.save();
+        return await this.obtenerProducto(resultado._id);
     };
 
     actualizarProducto = async (id, producto) => {
@@ -37,7 +38,7 @@ class ModelMongoDB {
         if(producto.precio) producto.precio = Number(producto.precio);
         if(producto.stock !== undefined) producto.stock = producto.stock ? parseInt(producto.stock) : 0;
 
-        await CnxMongoDB.db.collection('productos').updateOne({ _id: new ObjectId(id) }, { $set:producto });
+        await ProductoModel.updateOne({ _id: id }, { $set:producto });
         const productoActualizado = await this.obtenerProducto(id)
         return productoActualizado;
     };
@@ -47,7 +48,7 @@ class ModelMongoDB {
         if( !CnxMongoDB.connection ) return null;
 
         const productoEliminado = await this.obtenerProducto(id)
-        await CnxMongoDB.db.collection('productos').deleteOne({ _id: new ObjectId(id) });
+        await ProductoModel.deleteOne({ _id: id });
         return productoEliminado;
     };
 }

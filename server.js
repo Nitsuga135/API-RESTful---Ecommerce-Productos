@@ -8,7 +8,10 @@ import CnxMongoDB from './model/DBMongo.js';
 
 import RouterProductos from './router/productos.js'
 import RouterCarrito from './router/carrito.js'
+import RouterUsuarios from './router/usuarios.js'
+
 import RouterUpload from './router/upload.js'
+
 
 // -- Rutas / endpoints API RESTfull -- 
 
@@ -25,6 +28,7 @@ app.use(express.json());
 app.use('/api/productos', new RouterProductos().start() );
 app.use('/api/carrito', new RouterCarrito().start() );
 app.use('/api/upload', new RouterUpload().start() );
+app.use('/api/usuarios', new RouterUsuarios().start() );
 app.get(/^(?!\/api).*/, (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
 });

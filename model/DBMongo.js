@@ -1,25 +1,19 @@
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 import config from "../config/config.js";
 
 class CnxMongoDB {
 
-    static client = null;
-    static db = null;
     static connection = false;
 
     static conectar = async _ => {
         try {
 
-            if (CnxMongoDB.client) return CnxMongoDB.client;
+            if (CnxMongoDB.connection) return mongoose.connection;
 
             console.log('Conectando a la base de datos...');
-
-            CnxMongoDB.client = new MongoClient(config.STRCNX);
-            await CnxMongoDB.client.connect();
-
+            await mongoose.connect(config.STRCNX, { dbName: config.BASE });
             console.log('Base de datos conectada');
 
-            CnxMongoDB.db = CnxMongoDB.client.db(config.BASE);
             CnxMongoDB.connection = true;
 
         } catch (error) {
