@@ -11,8 +11,8 @@ class Router {
 
     start(){
         
-        this.router.post('/', this.controller.loginUsuario);
-        this.router.post('/', this.controller.RegisterUsuario);
+        this.router.post('/login', this.controller.loginUsuario);
+        this.router.post('/register', this.controller.RegisterUsuario);
         
         return this.router;
     }

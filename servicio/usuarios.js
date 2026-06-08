@@ -1,6 +1,6 @@
 import ModelFactory from '../model/DAO/usuarios/usuariosFactory.js';
 import config from '../config/config.js';
-import validar from './validaciones/productos.js';
+import validar from './validaciones/usuarios.js';
 
 class Servicio { 
 
@@ -11,7 +11,18 @@ class Servicio {
         //  -- GET INDIVIDUAL/all -- 
     loginUsuario = async credenciales => {
         const usuario = await this.model.loginUsuario()
-        return {status: usuario};      
+        
+        const usuarioEncontrado = usuario.filter( c=> c.usuario === credenciales.usuario && c.password === credenciales.password);
+
+        if(usuarioEncontrado.length === 1){
+            const usuario = usuarioEncontrado[0].usuario;
+            const admin = usuarioEncontrado[0].admin;
+            return {status: 'ok', usuario, admin};
+        }else{
+            return {status: "Usuario o contraseña incorrectos"};
+        }
+      
+
     }
 
     //  -- POST -- 

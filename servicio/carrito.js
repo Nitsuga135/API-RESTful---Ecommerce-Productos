@@ -38,19 +38,7 @@ class Servicio {
             throw new Error('No se recibieron productos para crear la preferencia');
         }
 
-        const baseUrl = config.MP_BACK_URL_BASE;
-
-        const response = await preference.create({
-            body: {
-                items,
-                back_urls: {
-                    success: `${baseUrl}/api/carrito/mp/feedback`,
-                    failure: `${baseUrl}/api/carrito/mp/feedback`,
-                    pending: `${baseUrl}/api/carrito/mp/feedback`
-                },
-                auto_return: "approved"
-            }
-        });
+        const response = await preference.create();
 
         return response;
     }

@@ -23,7 +23,7 @@ class Controller{
     RegisterUsuario = async (req, res) =>{
         try{
             const credenciales = req.body;
-            const usuarioRegistrado = await this.servicio.RegisterUsuario(credenciales);
+            const usuarioRegistrado = await this.servicio.guardarUsuario(credenciales);
             res.json(usuarioRegistrado);
         }
         catch(error){
