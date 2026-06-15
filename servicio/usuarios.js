@@ -1,6 +1,7 @@
 import ModelFactory from '../model/DAO/usuarios/usuariosFactory.js';
 import config from '../config/config.js';
 import validar from './validaciones/usuarios.js';
+import jwt from 'jsonwebtoken';
 
 class Servicio { 
 
@@ -17,7 +18,14 @@ class Servicio {
         if(usuarioEncontrado.length === 1){
             const usuario = usuarioEncontrado[0].usuario;
             const admin = usuarioEncontrado[0].admin;
-            return {status: 'ok', usuario, admin};
+
+            const payload = {
+                usuario,
+                admin
+            }
+            const token = jwt.sign(payload, config.JWT_SECRET, { expiresIn: '1h' });
+
+            return { status: 'ok', token};
         }else{
             return {status: "Usuario o contraseña incorrectos"};
         }

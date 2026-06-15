@@ -38,9 +38,25 @@ class Servicio {
             throw new Error('No se recibieron productos para crear la preferencia');
         }
 
-        const response = await preference.create();
+        try{
+            const baseUrl = config.MP_BACK_URL_BASE;
+            const response = await preference.create({
+                body: {
+                    items,
+                    back_urls: {
+                        success: `${baseUrl}/api/carrito/mp/feedback`,
+                        failure: `${baseUrl}/api/carrito/mp/feedback`,
+                        pending: `${baseUrl}/api/carrito/mp/feedback`
+                    },
+                    auto_return: 'approved'
+                },
+            });
 
-        return response;
+            return response;
+        }catch(error){
+            console.error('Error al crear la preferencia de pago:', error);
+            throw new Error('No se pudo crear la preferencia de pago');
+        }
     }
 
 }
