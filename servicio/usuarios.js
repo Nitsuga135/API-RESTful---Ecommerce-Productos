@@ -23,14 +23,14 @@ class Servicio {
                 usuario,
                 admin
             }
-            const token = jwt.sign(payload, config.JWT_SECRET, { expiresIn: '1h' });
+            const token = jwt.sign(payload, config.JWT_SECRET, { expiresIn: '5h' });
 
-            return { status: 'ok', token};
+            return { status: 'ok', token, usuario, admin };
         }else{
             return {status: "Usuario o contraseña incorrectos"};
         }
       
-
+        
     }
 
     //  -- POST -- 
@@ -42,6 +42,21 @@ class Servicio {
             return usuarioRegistrado;
         }else{
             throw new Error (error.details[0].message)
+        }
+        
+    }
+
+    validarToken = async (data) => {
+        const {token} = data;
+
+        if(token){
+            try {
+                const decoded = jwt.verify(token, config.JWT_SECRET);
+                return { valid: true, decoded };
+            }catch (error) {
+                return { valid: false, error: error.message };
+        }}else{
+            return { valid: false, error: 'Token no proporcionado' };
         }
         
     }

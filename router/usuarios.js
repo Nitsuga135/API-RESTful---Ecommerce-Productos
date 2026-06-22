@@ -13,7 +13,8 @@ class Router {
         
         this.router.post('/login', this.controller.loginUsuario);
         this.router.post('/register', this.controller.RegisterUsuario);
-        
+        this.router.post('/validarToken', this.controller.validarToken);
+
         return this.router;
     }
 }

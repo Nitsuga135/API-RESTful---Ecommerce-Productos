@@ -14,6 +14,7 @@ const BASE = process.env.BASE  ||  'test';
 //Mercado Pago
 const MP_AccessToken = process.env.MP_AccessToken  ||  '';
 const MP_BACK_URL_BASE = process.env.MP_BACK_URL_BASE || `http://localhost:${PORT}`;
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
 
 //Exportamos las variables de entorno para que puedan ser utilizadas en otros archivos
 export default {
@@ -23,5 +24,6 @@ export default {
   BASE,
   JWT_SECRET,
   MP_AccessToken,
-  MP_BACK_URL_BASE
+  MP_BACK_URL_BASE,
+  FRONTEND_URL
 }

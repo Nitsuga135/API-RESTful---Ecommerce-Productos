@@ -1,4 +1,5 @@
 import Servicio from '../servicio/carrito.js';
+import config from '../config/config.js';
 
 //  -- GET INDIVIDUAL/ALL -- 
 
@@ -32,7 +33,7 @@ class Controller{
 
         const { payment_id, status, merchant_order_id } = req.query;
 
-        res.redirect(`http://localhost:3000/carrito?payment_id=${payment_id}&status=${status}&merchant_order_id=${merchant_order_id}`);
+        res.redirect(`${config.FRONTEND_URL}/carrito?payment_id=${payment_id}&status=${status}&merchant_order_id=${merchant_order_id}`);
     }
     
     create_preference = async (req, res) => {

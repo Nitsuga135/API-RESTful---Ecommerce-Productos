@@ -8,6 +8,7 @@ class Controller{
         this.servicio = new Servicio();
     }
 
+    //  --verificar usuario --
     loginUsuario = async (req,res) => {
         try{
             const credenciales = req.body;
@@ -19,12 +20,24 @@ class Controller{
         }
     }
 
-    //  -- POST -- 
+    //  -- Guardar usuario -- 
     RegisterUsuario = async (req, res) =>{
         try{
             const credenciales = req.body;
             const usuarioRegistrado = await this.servicio.guardarUsuario(credenciales);
             res.json(usuarioRegistrado);
+        }
+        catch(error){
+            res.json({errMsg: error.message})
+        }
+    }
+
+    //  --validar token de usuario--
+    validarToken = async (req, res) => {
+        try{
+            const token = req.body;
+            const resultado = await this.servicio.validarToken(token);
+            res.json(resultado);
         }
         catch(error){
             res.json({errMsg: error.message})
