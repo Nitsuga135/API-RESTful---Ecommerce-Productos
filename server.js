@@ -12,6 +12,7 @@ import CnxMongoDB from './model/DBMongo.js';
 import RouterProductos from './router/productos.js'
 import RouterCarrito from './router/carrito.js'
 import RouterUsuarios from './router/usuarios.js'
+import RouterMensajes from './router/mensajes.js'
 
 import RouterUpload from './router/upload.js'
 
@@ -42,28 +43,8 @@ app.use(express.json());
 
 
 // -- Atencion comunicacion Socket.io --
-io.on('connection', (socket) => {
-    //Carga inicial de mensajes
-    console.log(`Nuevo cliente conectado: ${socket.id}`);
-    const mensaje = [{ usuario: 'nombre', texto: 'mensaje 1' }, { usuario: 'nombre', texto: 'mensaje 2' }, { usuario: 'nombre', texto: 'mensaje 3' }];
-    socket.emit('mensaje', mensaje);
-    
-    //escucha de mensajes nuevos de todos los clientes y los actualizo
-    socket.on('nuevo-mensaje', (data) => {
-        mensaje.push(data);
-        io.sockets.emit('mensaje', mensaje);
-    });
 
-    //desconexion del cliente
-    socket.on('disconnect', () => {
-        console.log(`Cliente desconectado: ${socket.id}`);
-    });
-});
-
-
-
-
-
+io.on('connection', new RouterMensajes().start(io) );
 
 // -- Rutas / endpoints API RESTfull --
 
