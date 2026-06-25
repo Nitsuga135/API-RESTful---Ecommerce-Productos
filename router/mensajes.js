@@ -1,7 +1,5 @@
 import Controller from '../controller/mensajes.js';
 
-
-const mensaje = [];
 class Router {
 
     constructor(){
@@ -9,15 +7,15 @@ class Router {
     }
 
     start(io){
-        return socket => {
+        return async socket => {
             //Carga inicial de mensajes
             
-            socket.emit('mensaje', mensaje);
+            socket.emit('mensaje', await this.controller.obtenerMensajes());
             
             //escucha de mensajes nuevos de todos los clientes y los actualizo
-            socket.on('nuevo-mensaje', (data) => {
-                mensaje.push(data);
-                io.sockets.emit('mensaje', mensaje);
+            socket.on('nuevo-mensaje', async (data) => {
+                await this.controller.guardarMensaje(data)
+                io.sockets.emit('mensaje', await this.controller.obtenerMensajes());
             });
 
             //desconexion del cliente

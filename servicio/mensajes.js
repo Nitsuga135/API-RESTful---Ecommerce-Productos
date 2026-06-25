@@ -1,6 +1,5 @@
 import ModelFactory from '../model/DAO/mensajes/mensajesFactory.js';
 import config from '../config/config.js';
-import { preference } from './pago.js';
 
 class Servicio { 
 
@@ -17,8 +16,8 @@ class Servicio {
     }
 
     //  -- POST -- 
-    guardarMensaje = async carrito => {
-        const mensajeGuardado = await this.model.guardarMensaje(carrito)
+    guardarMensaje = async mensaje => {
+        const mensajeGuardado = await this.model.guardarMensaje(mensaje)
         return mensajeGuardado
     }
 

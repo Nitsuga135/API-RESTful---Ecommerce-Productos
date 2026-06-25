@@ -6,7 +6,7 @@ class ModelMem {
 
     obtenerMensajes = async () => this.mensajes
 
-    guardarmensajes = async mensajes => {
+    guardarMensaje = async mensajes => {
         mensajes.id = String(parseInt(this.mensajes[this.mensajes.length-1]?.id || 0) + 1)
         this.mensajes.push(mensajes)
         return mensajes

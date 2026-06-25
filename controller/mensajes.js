@@ -9,7 +9,7 @@ class Controller{
         this.servicio = new Servicio();
     }
 
-    obtenerCarrito = async () => {
+    obtenerMensajes = async () => {
         const mensajes = await this.servicio.obtenerMensajes();
         return mensajes 
     }

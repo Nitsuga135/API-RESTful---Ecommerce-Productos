@@ -18,7 +18,7 @@ class ModelMongoDB {
         if(!CnxMongoDB.connection){
             throw new Error("No hay conexión a la base de datos");
         }
-        carritoModel = new CarritoModel(carrito);
+        const carritoModel = new CarritoModel(carrito);
         const savedCarrito = await carritoModel.save();
         return savedCarrito;
     };
