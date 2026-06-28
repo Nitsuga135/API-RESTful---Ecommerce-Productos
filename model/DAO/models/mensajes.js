@@ -4,7 +4,7 @@ const mensajesSchema = new mongoose.Schema({
     texto: String,
     usuario:String,
     admin: Boolean,
-    fechaHora: String
+    fechaYHora: String
 
 },{versionKey: false})
 

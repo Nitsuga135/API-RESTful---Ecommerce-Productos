@@ -39,7 +39,7 @@ class Servicio {
         }
 
         try{
-            const baseUrl = config.MP_BACK_URL_BASE;
+            const baseUrl = config.MERCADO_PAGO_CALLBACK_URL;
             const response = await preference.create({
                 body: {
                     items,

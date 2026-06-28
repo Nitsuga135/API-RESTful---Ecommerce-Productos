@@ -13,8 +13,10 @@ const BASE = process.env.BASE  ||  'test';
 
 //Mercado Pago
 const MP_AccessToken = process.env.MP_AccessToken  ||  '';
-const MP_BACK_URL_BASE = process.env.MP_BACK_URL_BASE || `http://localhost:${PORT}`;
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
+const FRONTEND_URL = process.env.FRONTEND_URL || `http://localhost:${PORT}`;
+const MERCADO_PAGO_CALLBACK_URL = FRONTEND_URL.includes('localhost')
+  ? 'https://api-restful-ecommerce-productos.onrender.com'
+  : FRONTEND_URL;
 
 //Exportamos las variables de entorno para que puedan ser utilizadas en otros archivos
 export default {
@@ -24,6 +26,6 @@ export default {
   BASE,
   JWT_SECRET,
   MP_AccessToken,
-  MP_BACK_URL_BASE,
-  FRONTEND_URL
+  FRONTEND_URL,
+  MERCADO_PAGO_CALLBACK_URL
 }
