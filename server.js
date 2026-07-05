@@ -15,6 +15,7 @@ import RouterUsuarios from './router/usuarios.js'
 import RouterMensajes from './router/mensajes.js'
 
 import RouterUpload from './router/upload.js'
+import { guarda } from './middleware/middelwareValidacionApi/guarda.js';
 
 
 // -- Configuracion del servidor --
@@ -49,8 +50,8 @@ io.on('connection', new RouterMensajes().start(io) );
 // -- Rutas / endpoints API RESTfull --
 
 app.use('/api/productos', new RouterProductos().start() );
-app.use('/api/carrito', new RouterCarrito().start() );
-app.use('/api/upload', new RouterUpload().start() );
+app.use('/api/carrito', guarda, new RouterCarrito().start() );
+app.use('/api/upload', guarda, new RouterUpload().start() );
 app.use('/api/usuarios', new RouterUsuarios().start() );
 app.get(/^(?!\/api).*/, (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));

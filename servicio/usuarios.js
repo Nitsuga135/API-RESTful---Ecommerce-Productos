@@ -25,7 +25,7 @@ class Servicio {
             }
             const token = jwt.sign(payload, config.JWT_SECRET, { expiresIn: '5h' });
 
-            return { status: 'ok', token, usuario, admin };
+            return { status: 'ok', token };
         }else{
             return {status: "Usuario o contraseña incorrectos"};
         }
@@ -48,7 +48,6 @@ class Servicio {
 
     validarToken = async (data) => {
         const {token} = data;
-
         if(token){
             try {
                 const decoded = jwt.verify(token, config.JWT_SECRET);
