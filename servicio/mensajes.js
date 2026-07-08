@@ -1,26 +1,18 @@
 import ModelFactory from '../model/DAO/mensajes/mensajesFactory.js';
 import config from '../config/config.js';
 
-class Servicio { 
-
+class Servicio {
     constructor(){
         this.model = ModelFactory.get(config.MODO_PERSISTENCIA);
     }
 
-        //  -- GET INDIVIDUAL/all -- 
-    obtenerMensajes = async _=> {
-       
-        const mensajes = await this.model.obtenerMensajes()
-        return mensajes
-    
-    }
-
-    //  -- POST -- 
-    guardarMensaje = async mensaje => {
-        const mensajeGuardado = await this.model.guardarMensaje(mensaje)
-        return mensajeGuardado
-    }
-
-
+    obtenerCanalPorUsuario   = async (idUsuario)             => await this.model.obtenerCanalPorUsuario(idUsuario);
+    crearCanal               = async (idUsuario)             => await this.model.crearCanal(idUsuario);
+    obtenerCanales           = async ()                      => await this.model.obtenerCanales();
+    obtenerMensajesPorCanal  = async (canalId, mostrarTodos) => await this.model.obtenerMensajesPorCanal(canalId, mostrarTodos);
+    guardarMensaje           = async (mensaje)               => await this.model.guardarMensaje(mensaje);
+    borrarMensaje            = async (idMensaje)             => await this.model.borrarMensaje(idMensaje);
+    marcarMensajesVistos     = async (canalId, emisor)       => await this.model.marcarMensajesVistos(canalId, emisor);
 }
-export default Servicio; 
+
+export default Servicio;

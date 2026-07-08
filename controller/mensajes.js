@@ -1,30 +1,17 @@
 import Servicio from '../servicio/mensajes.js';
-import config from '../config/config.js';
 
-//  -- GET INDIVIDUAL/ALL -- 
-
-class Controller{
-
+class Controller {
     constructor(){
         this.servicio = new Servicio();
     }
 
-    obtenerMensajes = async () => {
-        const mensajes = await this.servicio.obtenerMensajes();
-        return mensajes 
-    }
-
-    //  -- POST -- 
-    guardarMensaje = async mensaje =>{
-        try{
-            const mensajeGuardado = await this.servicio.guardarMensaje(mensaje);
-            
-            return mensajeGuardado;
-        }
-        catch(error){
-            return {errMsg: error.message}
-        }
-    }
-
+    obtenerCanalPorUsuario   = async (idUsuario)             => await this.servicio.obtenerCanalPorUsuario(idUsuario);
+    crearCanal               = async (idUsuario)             => await this.servicio.crearCanal(idUsuario);
+    obtenerCanales           = async ()                      => await this.servicio.obtenerCanales();
+    obtenerMensajesPorCanal  = async (canalId, mostrarTodos) => await this.servicio.obtenerMensajesPorCanal(canalId, mostrarTodos);
+    guardarMensaje           = async (mensaje)               => await this.servicio.guardarMensaje(mensaje);
+    borrarMensaje            = async (idMensaje)             => await this.servicio.borrarMensaje(idMensaje);
+    marcarMensajesVistos     = async (canalId, emisor)       => await this.servicio.marcarMensajesVistos(canalId, emisor);
 }
+
 export default Controller;
