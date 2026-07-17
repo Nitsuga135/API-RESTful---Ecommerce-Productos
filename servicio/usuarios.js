@@ -25,12 +25,10 @@ class Servicio {
             }
             const token = jwt.sign(payload, config.JWT_SECRET, { expiresIn: '5h' });
 
-            return { status: 'ok', token };
+            return { status: 'ok', token, usuario, admin };
         }else{
             return {status: "Usuario o contraseña incorrectos"};
         }
-      
-        
     }
 
     //  -- POST -- 
@@ -59,19 +57,10 @@ class Servicio {
         }
         
     }
-    
-   /*  //  -- PUT --
-    actualizarUsuario = async (id, usuario) =>{
-        const usuarioActualizado = await this.model.actualizarUsuario(id, usuario);
-        return usuarioActualizado;
-    }
 
-    //  -- DELETE --
-    borrarUsuario = async (id) =>{
-    const usuarioEliminado = await this.model.borrarUsuario(id);
-    return usuarioEliminado;
+    buscarUsuarioPorNombre = async (nombreUsuario) => {
+        return await this.model.buscarUsuarioPorNombre(nombreUsuario);
     }
- */
 }
 
 

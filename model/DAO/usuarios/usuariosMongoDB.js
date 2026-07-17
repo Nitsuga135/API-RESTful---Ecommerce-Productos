@@ -23,6 +23,13 @@ class ModelMongoDB {
         const savedUsuario = await usuarioModel.save();
         return savedUsuario;
     };
+
+    buscarUsuarioPorNombre = async (usuario) => {
+        if(!CnxMongoDB.connection){
+            throw new Error("No hay conexión a la base de datos");
+        }
+        return await UsuarioModel.findOne({ usuario });
+    };
 }
 
 export default ModelMongoDB;
